@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <h1>Student Details</h1>
+    <p><strong>Name:</strong> {{ object.student_name }}</p>
+    <p><strong>USN:</strong> {{ object.student_usn }}</p>
+    <p><strong>Semester:</strong> {{ object.student_sem }}</p>
+
+    <h2>Enrolled Courses</h2>
+    <ul>
+        {% for course in object.enrollment.all %}
+            <li>{{ course.course_name }} - Credits: {{ course.course_credit }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

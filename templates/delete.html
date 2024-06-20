@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <p>Are You Sure You Want to delete</p>
+    {{ form.as_p }}
+    <button type="submit"> Submit </button>
+    <a href="{% url 'show_student' %}"><button type="button">Cancel</button></a>
+</form>
+
+{% endblock %}

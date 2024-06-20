@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <h1>All Students Details</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>USN</th>
+                <th>Semester</th>
+                <th>Enrolled Courses</th>
+                <th>Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in object_list %}
+            <tr>
+                <td><a href="{% url 'Detail_student' student.pk %}">{{ student.student_name }}</a></td>
+                <td>{{ student.student_usn }}</td>
+                <td>{{ student.student_sem }}</td>
+                <td>
+                    <ul>
+                        {% for course in student.enrollment.all %}
+                        <li>{{ course.course_name }} - Credits: {{ course.course_credit }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <a href="{% url 'edit_student' student.pk%}"><button>edit</button></a>
+                    <a href="{% url 'Delete_student' student.pk %}"><button>delete</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{%url 'student_list' %}"><button> Add Student </button></a>
+    <a href="{%url 'course_list' %}"><button> Add Course  </button></a>
+{% endblock %}
